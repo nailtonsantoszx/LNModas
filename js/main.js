@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Filtros de Categoria
     const filterBtns = document.querySelectorAll('.filter-btn');
+    const productCategories = document.querySelectorAll('.product-category');
+
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const filter = btn.getAttribute('data-filter');
-            const categories = document.querySelectorAll('.product-category');
-            categories.forEach(category => {
-                if (filter === 'all' || category.id === `category-${filter}`) {
+
+            productCategories.forEach(category => {
+                if (filter === 'all' || category.classList.contains(filter)) {
                     category.style.display = 'block';
                 } else {
                     category.style.display = 'none';
@@ -14,4 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    // Aplica o filtro inicial para mostrar todos os produtos
+    document.querySelector('.filter-btn[data-filter="all"]').click();
 });
