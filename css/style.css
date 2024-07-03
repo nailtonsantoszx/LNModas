@@ -1,5 +1,4 @@
-/* style.css */
-
+/* Estilos Globais */
 body {
     background-color: #000;
     color: #fff;
@@ -8,76 +7,168 @@ body {
     padding: 0;
 }
 
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho */
 header {
     background-color: #111;
-    padding: 20px;
-    text-align: center;
-    position: relative;
+    color: white;
+    padding: 15px 0;
 }
 
-h1 {
+header h1 {
     margin: 0;
+    font-size: 2.5em;
+    text-align: center;
 }
 
-#admin-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-color: #444;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-}
-
-#admin-button:hover {
-    background-color: #555;
-}
-
-main {
-    padding: 20px;
-}
-
-#carousel {
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
     display: flex;
-    overflow: auto;
-    gap: 10px;
+    justify-content: center;
 }
 
-.product {
-    position: relative;
-    background: #222;
-    padding: 10px;
-    border-radius: 5px;
+nav ul li {
+    margin: 0 15px;
 }
 
-.product img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
+nav ul li a {
+    color: white;
+    text-decoration: none;
 }
 
-#admin-panel {
-    margin-top: 20px;
+/* Seção Principal */
+main {
+    padding: 20px 0;
 }
 
-#upload-image {
-    display: block;
-    margin-bottom: 10px;
+/* Filtros de Categoria */
+.filters {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.hidden {
-    display: none;
-}
-
-#remove-image-btn {
-    background-color: #e74c3c;
-    border: none;
+.filter-btn {
+    background-color: #003366; /* Azul Escuro */
     color: #fff;
-    padding: 10px;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
     cursor: pointer;
+    margin: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
 }
 
-#remove-image-btn:hover {
-    background-color: #c0392b;
+.filter-btn:hover {
+    background-color: #002244; /* Azul Escuro - Hover */
+}
+
+/* Produtos */
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product-category {
+    width: 100%;
+}
+
+.product-category h3 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Item do Produto */
+.product-item {
+    background-color: #222;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.product-item:hover {
+    background-color: #333;
+}
+
+.product-item img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.product-item h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.product-item span {
+    font-size: 1.2em;
+    color: #f39c12;
+    display: block;
+    margin: 10px 0;
+}
+
+.product-item .btn {
+    background-color: #f39c12;
+    color: #000;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.product-item .btn:hover {
+    background-color: #e67e22;
+}
+
+/* Botão Adicionar Produto */
+.add-product {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.add-product .btn {
+    background-color: #28a745;
+}
+
+.add-product .btn:hover {
+    background-color: #218838;
+}
+
+/* Rodapé */
+footer {
+    background-color: #111;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+footer ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+footer ul li a {
+    color: #fff;
+    text-decoration: none;
 }
