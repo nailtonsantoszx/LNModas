@@ -1,49 +1,33 @@
 <?php
 session_start();
 if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
-    header('Location: index.php');
+    header('Location: login.php');
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['imagem'])) {
-    $target_dir = "../images/";
-    $target_file = $target_dir . basename($_FILES["imagem"]["name"]);
-    $uploadOk = 1;
-
-    // Verifica se o arquivo é uma imagem
-    $check = getimagesize($_FILES["imagem"]["tmp_name"]);
-    if ($check === false) {
-        echo "O arquivo não é uma imagem.";
-        $uploadOk = 0;
-    }
-
-    // Verifica se o arquivo já existe
-    if (file_exists($target_file)) {
-        echo "Desculpe, o arquivo já existe.";
-        $uploadOk = 0;
-    }
-
-    // Verifica o tamanho do arquivo
-    if ($_FILES["imagem"]["size"] > 5000000) {
-        echo "Desculpe, o arquivo é muito grande.";
-        $uploadOk = 0;
-    }
-
-    // Verifica o formato do arquivo
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-        echo "Desculpe, apenas arquivos JPG, JPEG, PNG & GIF são permitidos.";
-        $uploadOk = 0;
-    }
-
-    if ($uploadOk === 0) {
-        echo "Desculpe, seu arquivo não foi enviado.";
-    } else {
-        if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
-            echo "O arquivo " . htmlspecialchars(basename($_FILES["imagem"]["name"])) . " foi enviado com sucesso.";
-        } else {
-            echo "Desculpe, houve um erro ao enviar seu arquivo.";
-        }
-    }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $productId = $_POST['productId'];
+    ?>
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Upload de Imagem</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h2>Adicionar Imagem ao Produto</h2>
+            <form action="scripts/upload-image.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($productId); ?>">
+                <label for="image">Imagem do Produto:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+                <button type="submit" class="btn">Enviar Imagem</button>
+            </form>
+        </div>
+    </body>
+    </html>
+    <?php
 }
 ?>
