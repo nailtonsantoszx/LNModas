@@ -1,6 +1,6 @@
 <?php
 session_start();
-$is_admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+$loggedIn = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -10,7 +10,7 @@ $is_admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
     <title>LN Modas - Venda de Roupas</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="<?php echo $is_admin ? 'admin' : ''; ?>">
+<body>
     <!-- Cabeçalho -->
     <header>
         <div class="container">
@@ -21,9 +21,11 @@ $is_admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
                     <li><a href="#">Produtos</a></li>
                     <li><a href="#">Sobre Nós</a></li>
                     <li><a href="#">Contato</a></li>
-                    <?php if ($is_admin): ?>
+                    <?php if ($loggedIn): ?>
                         <li><a href="admin.php">Admin</a></li>
-                        <li><a href="logout.php">Sair</a></li>
+                        <li><a href="logout.php">Logout</a></li>
+                    <?php else: ?>
+                        <li><a href="login.php">Login</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>
@@ -49,68 +51,58 @@ $is_admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
                 <!-- Categoria Camisas -->
                 <div id="category-camisas" class="product-category">
                     <h3>Camisas</h3>
-                    <div class="product-item">
+                    <div class="product-item" data-product-id="1">
                         <img src="images/produto1.jpg" alt="Camisa Polo">
                         <h2>Camisa Polo</h2>
                         <span>R$ 119,90</span>
                         <button class="btn">Comprar</button>
-                        <?php if ($is_admin): ?>
-                        <button class="btn add-image-btn admin-only">+</button> <!-- Botão Adicionar Imagem -->
+                        <?php if ($loggedIn): ?>
+                            <button class="btn add-image-btn">Adicionar Imagem</button>
                         <?php endif; ?>
                     </div>
-                    <!-- Adicione mais produtos de Camisa aqui -->
                 </div>
 
                 <!-- Categoria Calças -->
                 <div id="category-calcas" class="product-category">
                     <h3>Calças</h3>
-                    <div class="product-item">
+                    <div class="product-item" data-product-id="2">
                         <img src="images/produto2.jpg" alt="Calça Jeans">
                         <h2>Calça Jeans</h2>
                         <span>R$ 149,90</span>
                         <button class="btn">Comprar</button>
-                        <?php if ($is_admin): ?>
-                        <button class="btn add-image-btn admin-only">+</button> <!-- Botão Adicionar Imagem -->
+                        <?php if ($loggedIn): ?>
+                            <button class="btn add-image-btn">Adicionar Imagem</button>
                         <?php endif; ?>
                     </div>
-                    <!-- Adicione mais produtos de Calça aqui -->
                 </div>
 
                 <!-- Categoria Shorts -->
                 <div id="category-shorts" class="product-category">
                     <h3>Shorts</h3>
-                    <div class="product-item">
+                    <div class="product-item" data-product-id="3">
                         <img src="images/produto3.jpg" alt="Shorts Casual">
                         <h2>Shorts Casual</h2>
                         <span>R$ 89,90</span>
                         <button class="btn">Comprar</button>
-                        <?php if ($is_admin): ?>
-                        <button class="btn add-image-btn admin-only">+</button> <!-- Botão Adicionar Imagem -->
+                        <?php if ($loggedIn): ?>
+                            <button class="btn add-image-btn">Adicionar Imagem</button>
                         <?php endif; ?>
                     </div>
-                    <!-- Adicione mais produtos de Shorts aqui -->
                 </div>
 
                 <!-- Categoria Tênis -->
                 <div id="category-tenis" class="product-category">
                     <h3>Tênis</h3>
-                    <div class="product-item">
+                    <div class="product-item" data-product-id="4">
                         <img src="images/produto4.jpg" alt="Tênis Esportivo">
                         <h2>Nome do Tênis</h2>
                         <span>R$ 199,90</span>
                         <button class="btn">Comprar</button>
-                        <?php if ($is_admin): ?>
-                        <button class="btn add-image-btn admin-only">+</button> <!-- Botão Adicionar Imagem -->
+                        <?php if ($loggedIn): ?>
+                            <button class="btn add-image-btn">Adicionar Imagem</button>
                         <?php endif; ?>
                     </div>
-                    <!-- Adicione mais produtos de Tênis aqui -->
                 </div>
-
-                <?php if ($is_admin): ?>
-                <div class="add-product admin-only">
-                    <button class="btn">Adicionar Novo Produto</button>
-                </div>
-                <?php endif; ?>
             </div>
         </section>
     </main>
@@ -125,7 +117,9 @@ $is_admin = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
         </div>
     </footer>
 
-    <script src="js/admin.js"></script>
     <script src="js/main.js"></script>
+    <?php if ($loggedIn): ?>
+        <script src="js/admin.js"></script>
+    <?php endif; ?>
 </body>
 </html>
