@@ -57,9 +57,10 @@ $loggedIn = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
                         <span>R$ 119,90</span>
                         <button class="btn">Comprar</button>
                         <?php if ($loggedIn): ?>
-                            <button class="btn add-image-btn">Adicionar Imagem</button>
+                            <button class="btn add-image-btn" data-product-id="1">+</button>
                         <?php endif; ?>
                     </div>
+                    <!-- Adicione mais produtos de Camisa aqui -->
                 </div>
 
                 <!-- Categoria Calças -->
@@ -71,9 +72,10 @@ $loggedIn = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
                         <span>R$ 149,90</span>
                         <button class="btn">Comprar</button>
                         <?php if ($loggedIn): ?>
-                            <button class="btn add-image-btn">Adicionar Imagem</button>
+                            <button class="btn add-image-btn" data-product-id="2">+</button>
                         <?php endif; ?>
                     </div>
+                    <!-- Adicione mais produtos de Calça aqui -->
                 </div>
 
                 <!-- Categoria Shorts -->
@@ -85,9 +87,10 @@ $loggedIn = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
                         <span>R$ 89,90</span>
                         <button class="btn">Comprar</button>
                         <?php if ($loggedIn): ?>
-                            <button class="btn add-image-btn">Adicionar Imagem</button>
+                            <button class="btn add-image-btn" data-product-id="3">+</button>
                         <?php endif; ?>
                     </div>
+                    <!-- Adicione mais produtos de Shorts aqui -->
                 </div>
 
                 <!-- Categoria Tênis -->
@@ -95,24 +98,34 @@ $loggedIn = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
                     <h3>Tênis</h3>
                     <div class="product-item" data-product-id="4">
                         <img src="images/produto4.jpg" alt="Tênis Esportivo">
-                        <h2>Nome do Tênis</h2>
-                        <span>R$ 199,90</span>
+                        <h2>Tênis Esportivo</h2>
+                        <span>R$ 179,90</span>
                         <button class="btn">Comprar</button>
                         <?php if ($loggedIn): ?>
-                            <button class="btn add-image-btn">Adicionar Imagem</button>
+                            <button class="btn add-image-btn" data-product-id="4">+</button>
                         <?php endif; ?>
                     </div>
+                    <!-- Adicione mais produtos de Tênis aqui -->
                 </div>
             </div>
         </section>
+
+        <?php if ($loggedIn): ?>
+            <!-- Botão Adicionar Produto -->
+            <div class="add-product">
+                <button id="add-product-btn" class="btn">Adicionar Produto</button>
+            </div>
+        <?php endif; ?>
     </main>
 
     <!-- Rodapé -->
     <footer>
         <div class="container">
+            <p>&copy; 2024 LN Modas. Todos os direitos reservados.</p>
             <ul>
                 <li><a href="#">Política de Privacidade</a></li>
                 <li><a href="#">Termos de Serviço</a></li>
+                <li><a href="#">FAQ</a></li>
             </ul>
         </div>
     </footer>
