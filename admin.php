@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
-    header('Location: index.php');
+    header('Location: login.php');
     exit;
 }
 ?>
@@ -13,14 +13,14 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
     <title>Admin - LN Modas</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="admin">
+<body>
     <header>
         <div class="container">
             <h1>Admin - LN Modas</h1>
             <nav>
                 <ul>
                     <li><a href="index.php">Voltar ao Site</a></li>
-                    <li><a href="logout.php">Sair</a></li>
+                    <li><a href="logout.php">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -28,13 +28,8 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
     
     <main>
         <div class="container">
-            <h2>Administração</h2>
-            <div class="add-product">
-                <button class="btn">Adicionar Novo Produto</button>
-            </div>
-            <div class="product-list">
-                <!-- A lista de produtos será exibida aqui -->
-            </div>
+            <h2>Área Administrativa</h2>
+            <button id="add-product-btn" class="btn">Adicionar Novo Produto</button>
         </div>
     </main>
 
