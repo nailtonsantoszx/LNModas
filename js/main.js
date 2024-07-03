@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const filter = btn.getAttribute('data-filter');
 
             productCategories.forEach(category => {
-                if (filter === 'all' || category.classList.contains(filter)) {
+                const categoryType = category.getAttribute('id').replace('category-', '');
+
+                if (filter === 'all' || categoryType === filter) {
                     category.style.display = 'block';
                 } else {
                     category.style.display = 'none';
