@@ -1,27 +1,25 @@
-/* Estilos Gerais */
 body {
+    background-color: black;
+    color: white;
     font-family: Arial, sans-serif;
-    background-color: #000;
-    color: #fff;
     margin: 0;
     padding: 0;
 }
 
 header {
     background-color: #333;
-    color: #fff;
-    padding: 15px 0;
+    padding: 10px 0;
 }
 
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
 }
 
 header h1 {
     margin: 0;
+    color: white;
 }
 
 header nav ul {
@@ -32,151 +30,164 @@ header nav ul {
 }
 
 header nav ul li {
-    margin-left: 15px;
+    margin-right: 20px;
 }
 
 header nav ul li a {
-    color: #fff;
+    color: white;
     text-decoration: none;
+}
+
+.main {
+    padding: 20px 0;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.filter-btn:hover {
+    background-color: #555;
+}
+
+.products {
+    padding: 0 20px;
+}
+
+.product-category {
+    margin-bottom: 40px;
+}
+
+.product-category h3 {
+    margin-top: 0;
+    color: #FFD700; /* Golden color for category titles */
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    background-color: #222;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.product-item img {
+    max-width: 100px;
+    margin-right: 20px;
+}
+
+.product-item h2 {
+    margin: 0;
+    color: #FFD700; /* Golden color for product names */
+}
+
+.product-item span {
+    margin-left: auto;
+    color: #FFD700; /* Golden color for prices */
+}
+
+.product-item .btn {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.product-item .btn:hover {
+    background-color: #555;
+}
+
+.add-product .btn {
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+}
+
+.add-product .btn:hover {
+    background-color: #FFDF00;
 }
 
 footer {
     background-color: #333;
-    color: #fff;
     padding: 10px 0;
-    text-align: center;
 }
 
 footer .container {
-    padding: 0 20px;
+    text-align: center;
 }
 
 footer ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
 }
 
 footer ul li {
-    margin-left: 15px;
+    display: inline;
+    margin: 0 10px;
 }
 
 footer ul li a {
-    color: #fff;
+    color: white;
     text-decoration: none;
 }
 
-.products {
-    padding: 20px 0;
-}
-
-.product-category {
-    margin-bottom: 30px;
-}
-
-.product-item {
-    border: 1px solid #444;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #222;
-    position: relative; /* Adiciona posição relativa para o botão de adicionar imagem */
-}
-
-.product-item img {
-    max-width: 100%;
-}
-
-.product-item h2 {
-    font-size: 1.2em;
-}
-
-.product-item .btn {
-    background-color: #555;
-    border: none;
-    color: #fff;
-    padding: 10px;
-    cursor: pointer;
-}
-
-/* Botão Adicionar Imagem */
-.add-image-btn {
-    background-color: #f39c12;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    font-size: 1.5em;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-}
-
-/* Filtros */
-.filters {
-    padding: 20px 0;
-}
-
-.filter-btn {
-    background-color: #444;
-    border: none;
-    color: #fff;
-    padding: 10px;
-    cursor: pointer;
-    margin-right: 10px;
-}
-
-/* Admin */
-.admin .admin-only {
-    display: block;
-}
-
-.add-product {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.add-product .btn {
-    background-color: #666;
-    border: none;
-    color: #fff;
-    padding: 10px;
-    cursor: pointer;
-}
-
-/* Login */
 .login-container {
-    max-width: 400px;
+    width: 300px;
     margin: 100px auto;
+    background-color: #222;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 .login-container h2 {
-    margin-bottom: 20px;
+    margin-top: 0;
+    color: #FFD700;
+}
+
+.login-container .error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
 }
 
 .login-container form input {
-    width: 100%;
-    padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ddd;
+    padding: 10px;
+    border: none;
     border-radius: 5px;
 }
 
 .login-container form button {
-    width: 100%;
-    padding: 10px;
-    background: #333;
-    color: #fff;
+    background-color: #FFD700;
+    color: black;
     border: none;
+    padding: 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-.error {
-    color: red;
-    margin-top: 10px;
+.login-container form button:hover {
+    background-color: #FFDF00;
 }
