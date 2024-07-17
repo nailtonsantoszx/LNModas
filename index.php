@@ -1,125 +1,75 @@
-<?php
-session_start();
-$loggedIn = isset($_SESSION['admin']) && $_SESSION['admin'] === true;
-?>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LN Modas - Venda de Roupas</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>LN Modas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <!-- Cabeçalho -->
-    <header>
-        <div class="container">
-            <h1>LN Modas</h1>
-            <nav>
-                <ul>
-                    <li><a href="#">Início</a></li>
-                    <li><a href="#">Produtos</a></li>
-                    <li><a href="#">Sobre Nós</a></li>
-                    <li><a href="#">Contato</a></li>
-                    <?php if ($loggedIn): ?>
-                        <li><a href="admin.php">Admin</a></li>
-                        <li><a href="logout.php">Logout</a></li>
-                    <?php else: ?>
-                        <li><a href="login.php">Login</a></li>
-                    <?php endif; ?>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <?php include 'includes/header.php'; ?>
     
-    <!-- Seção Principal -->
     <main>
-        <!-- Filtros de Categoria -->
-        <div class="filters">
-            <button class="filter-btn" data-filter="all">Todos</button>
-            <button class="filter-btn" data-filter="camisas">Camisas</button>
-            <button class="filter-btn" data-filter="calcas">Calças</button>
-            <button class="filter-btn" data-filter="shorts">Shorts</button>
-            <button class="filter-btn" data-filter="tenis">Tênis</button>
-        </div>
-
-        <!-- Seção Produtos -->
+        <section class="hero">
+            <div class="hero-text">
+                <img id="logo-hero" src="images/logo.png" alt="LN Modas">
+                <p>Explore nosso universo de tendências, a moda define quem você é!</p>
+            </div>
+        </section>
+        
+        <section class="categories">
+            <h2>Categorias</h2>
+            <div class="category-buttons">
+                <a href="index.php?category=all" class="button">Todos</a>
+                <a href="index.php?category=camisas" class="button">Camisas</a>
+                <a href="index.php?category=calcas" class="button">Calças</a>
+                <a href="index.php?category=shorts" class="button">Shorts</a>
+                <a href="index.php?category=tenis" class="button">Tênis</a>
+                <a href="index.php?category=bone" class="button">Bonés</a>
+            </div>
+        </section>
+        
         <section class="products">
-            <div class="container">
-                <h2>Nossos Produtos</h2>
+            <h2>Nossos produtos</h2>
+            <div class="product-list">
+                <?php
+                // Array de produtos com categorias, imagens e informações
+                $products = [
+                    ["nome" => "Camisa do Corinthians 2015", "preco" => "R$ 149,99", "imagem" => "camisa-corinthians-2015.jpg", "categoria" => "camisas"],
+                    ["nome" => "Camisa do Barcelona 2009 Messi", "preco" => "R$ 299,99", "imagem" => "camisa-barcelona-2009-messi.jpg", "categoria" => "camisas"],
+                    ["nome" => "Camisa Polo Lacoste Verde", "preco" => "R$ 189,99", "imagem" => "camisa-polo-lacoste-verde.jpg", "categoria" => "camisas"],
+                    ["nome" => "Camisa Corinthians 2024 Preta", "preco" => "R$ 159,99", "imagem" => "camisa-corinthians-2024-preta.jpg", "categoria" => "camisas"],
+                    ["nome" => "Boné Lacoste Branco", "preco" => "R$ 99,99", "imagem" => "bone-lacoste-branco.jpg", "categoria" => "bone"],
+                    ["nome" => "Boné Lacoste Preto", "preco" => "R$ 99,99", "imagem" => "bone-lacoste-preto.jpg", "categoria" => "bone"],
+                    ["nome" => "Boné Lacoste Vermelho", "preco" => "R$ 99,99", "imagem" => "bone-lacoste-vermelho.jpg", "categoria" => "bone"],
+                    ["nome" => "Calça Corinthians", "preco" => "R$ 249,99", "imagem" => "calca-corinthians.jpg", "categoria" => "calcas"],
+                    ["nome" => "Calça Nike", "preco" => "R$ 229,99", "imagem" => "calca-nike.jpg", "categoria" => "calcas"],
+                    ["nome" => "Short Nike", "preco" => "R$ 139,99", "imagem" => "short-nike.jpg", "categoria" => "shorts"],
+                    ["nome" => "Camisa do Flamengo 2024", "preco" => "R$ 179,99", "imagem" => "camisa-flamengo-2024.jpg", "categoria" => "camisas"],
+                    ["nome" => "Boné Adidas Preto", "preco" => "R$ 89,99", "imagem" => "bone-adidas-preto.jpg", "categoria" => "bone"],
+                    ["nome" => "Tênis Puma", "preco" => "R$ 299,99", "imagem" => "tenis-puma.jpg", "categoria" => "tenis"],
+                ];
 
-                <!-- Categoria Camisas -->
-                <div id="category-camisas" class="product-category camisas">
-                    <h3>Camisas</h3>
-                    <div class="product-item" data-product-id="1" data-category="camisas">
-                        <img src="images/produto1.jpg" alt="Camisa Polo">
-                        <h2>Camisa Polo</h2>
-                        <span>R$ 119,90</span>
-                        <button class="btn">Comprar</button>
-                        <?php if ($loggedIn): ?>
-                            <button class="btn add-image-btn" data-product-id="1">Adicionar Imagem</button>
-                        <?php endif; ?>
-                    </div>
-                </div>
+                // Filtrando os produtos pela categoria selecionada
+                $selectedCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
 
-                <!-- Categoria Calças -->
-                <div id="category-calcas" class="product-category calcas">
-                    <h3>Calças</h3>
-                    <div class="product-item" data-product-id="2" data-category="calcas">
-                        <img src="images/produto2.jpg" alt="Calça Jeans">
-                        <h2>Calça Jeans</h2>
-                        <span>R$ 149,90</span>
-                        <button class="btn">Comprar</button>
-                        <?php if ($loggedIn): ?>
-                            <button class="btn add-image-btn" data-product-id="2">Adicionar Imagem</button>
-                        <?php endif; ?>
-                    </div>
-                </div>
-
-                <!-- Categoria Shorts -->
-                <div id="category-shorts" class="product-category shorts">
-                    <h3>Shorts</h3>
-                    <div class="product-item" data-product-id="3" data-category="shorts">
-                        <img src="images/produto3.jpg" alt="Shorts Casual">
-                        <h2>Shorts Casual</h2>
-                        <span>R$ 89,90</span>
-                        <button class="btn">Comprar</button>
-                        <?php if ($loggedIn): ?>
-                            <button class="btn add-image-btn" data-product-id="3">Adicionar Imagem</button>
-                        <?php endif; ?>
-                    </div>
-                </div>
-
-                <!-- Categoria Tênis -->
-                <div id="category-tenis" class="product-category tenis">
-                    <h3>Tênis</h3>
-                    <div class="product-item" data-product-id="4" data-category="tenis">
-                        <img src="images/produto4.jpg" alt="Tênis Esportivo">
-                        <h2>Nome do Tênis</h2>
-                        <span>R$ 199,90</span>
-                        <button class="btn">Comprar</button>
-                        <?php if ($loggedIn): ?>
-                            <button class="btn add-image-btn" data-product-id="4">Adicionar Imagem</button>
-                        <?php endif; ?>
-                    </div>
-                </div>
+                foreach ($products as $product) {
+                    if ($selectedCategory == 'all' || $selectedCategory == $product['categoria']) {
+                        echo "
+                        <div class='product'>
+                            <img src='images/{$product['imagem']}' alt='{$product['nome']}'>
+                            <h3>{$product['nome']}</h3>
+                            <p class='price'>{$product['preco']}</p>
+                            <a href='checkout.php?id={$product['nome']}' class='button'>Comprar</a>
+                        </div>";
+                    }
+                }
+                ?>
             </div>
         </section>
     </main>
 
-    <!-- Rodapé -->
-    <footer>
-        <div class="container">
-            <ul>
-                <li><a href="#">Política de Privacidade</a></li>
-                <li><a href="#">Termos de Serviço</a></li>
-            </ul>
-        </div>
-    </footer>
-
-    <script src="js/main.js"></script>
-    <?php if ($loggedIn): ?>
-        <script src="js/admin.js"></script>
-    <?php endif; ?>
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>
